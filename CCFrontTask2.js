@@ -1,18 +1,18 @@
 exports.damage =function(spellString) {
-	var str = spellString;     			//przekazuję do zmiennej dany czar, dla bezpieczeństwa
-	var letters = str.split("");		// przerabiam czar na tablicę
+	var str = spellString;     			//spell to variable
+	var letters = str.split("");		// spell to array
 	var lengthStr = letters.length;		//Zmienna z długością oryginalnego czaru
 	var checkerStart = false;			
-	var startToken; 					//początek czaru(int)
+	var startToken; 					//(int)
 	var checkerEnd  = false;
-	var endToken;						// koniec czaru(int)
+	var endToken;						//(int)
 	
-	//sprawdzam, czy czar ma minimalną długość
+	//minimum lenght
 	if(lengthStr<4){
 		return 0;
 	}
 	
-	//sprawdzanie początku czaru 
+	//begining of charm 
 	for(var i=0; i<(lengthStr-3);i++){
 		if(letters[i]=='f' && letters[i+1]=='e' ){
 			if (!checkerStart){
@@ -28,7 +28,7 @@ exports.damage =function(spellString) {
 		return 0;
 	}
 	
-	//szukanie końca czaru
+	//end of charm
 	for(var j = startToken + 2; j<(lengthStr-1);j++){
 		if(letters[j]=='a' && letters[j+1]=='i' ){
 			checkerEnd = true;
@@ -39,8 +39,8 @@ exports.damage =function(spellString) {
 		return 0;
 	}
 
-	//zliczanie punktów
-	var ammountOfletterInSpell = endToken - startToken- 2;		//długość właściwego czaru
+	//point
+	var ammountOfletterInSpell = endToken - startToken- 2;		// true lenght of spell
 	var damage = 0;												//DMG
 	if(ammountOfletterInSpell == 0){
 		return 3;
@@ -85,8 +85,8 @@ exports.damage =function(spellString) {
 	}
 
 	damage = damage + 3 - ammountOfletterInSpell;
-	
-	//czy ujemny
+
+	//Negative value
 	if(damage<0){
 		damage = 0;
 	}
